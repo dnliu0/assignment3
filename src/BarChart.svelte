@@ -10,7 +10,7 @@
     export let brushLayer;
     export let brush;
 
-    let margin = {top: 10, right: 80, bottom: 170, left: 60};
+    let margin = {top: 10, right: 80, bottom: 145, left: 60};
     let width = 800;
     let height = 400;
     let chartW = width - margin.left - margin.right;

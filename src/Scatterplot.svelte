@@ -12,9 +12,9 @@
     let brushLayer;
     let brush;
 
-    let margin = {top: 10, right: 80, bottom: 75, left: 60};
+    let margin = {top: 50, right: 80, bottom: 75, left: 60};
     let width = 500;
-    let height = 300;
+    let height = 340;
     let chartW = width - margin.left - margin.right;
     let chartH = height - margin.top - margin.bottom;
 
