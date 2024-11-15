@@ -219,6 +219,9 @@
 
 <main>
   <!-- <h1>NYC Restaurants</h1> -->
+  <p>
+    Data workers look for and leverage datasets for a wide range of tasks. However, previous studies have shown that effectively navigating to datasets that meet their specific information needs remains a challenge. To explore this further, we conducted a survey study with 41 participants who work with data on a regular basis to understand how people currently search for datasets on open data sharing platforms, the types of information they rely on, and the factors that influence their decision to use a dataset.
+  </p> 
   <div class="flex-container row">
     <!-- <div class="map"><Heatmap data={data} fullData={fullData}/></div> -->
     <div><Scatterplot data={data} fullData={fullData} criteria={criteria} bind:marks={marks} bind:marks2={marks2} /></div>
@@ -279,12 +282,14 @@
   p {
     margin-bottom: 10px;
     font-size: 1.1em;
-    text-align: center;
+    text-align: left;
   }
 
   .hist-text {
     margin-bottom: 10px;
   }
+
+  
 
   
 </style>

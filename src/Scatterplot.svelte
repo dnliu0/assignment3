@@ -12,9 +12,9 @@
     let brushLayer;
     let brush;
 
-    let margin = {top: 10, right: 80, bottom: 30, left: 60};
+    let margin = {top: 10, right: 80, bottom: 75, left: 60};
     let width = 500;
-    let height = 200;
+    let height = 300;
     let chartW = width - margin.left - margin.right;
     let chartH = height - margin.top - margin.bottom;
 
@@ -96,6 +96,39 @@
                 .call(d3.axisLeft(yScale));
         }
         $: {
+            d3.select(xAxis).selectAll("text").remove()
+            d3.select(xAxis)
+            .append("text")
+            .style("font-family", "sans-serif")
+            .style("font-size", "11px")
+            .style("font-weight", "bold")
+            .style("fill", "black")
+            .style("transform", `translate(${chartW / 2}px, ${40}px)`)
+            .text("Task Type")
+            d3.select(xAxis)
+            .append("text").style("font-family", "sans-serif")
+            .style("font-size", "11px")
+            .style("font-weight", "bold")
+            .style("fill", "black")
+            .style("transform", `translate(${10}px, ${20}px)`)
+            .text("Exploratory")
+            d3.select(xAxis)
+            .append("text").style("font-family", "sans-serif")
+            .style("font-size", "11px")
+            .style("font-weight", "bold")
+            .style("fill", "black")
+            .style("transform", `translate(${chartW}px, ${20}px)`)
+            .text("Confirmatory")
+
+            d3.select(yAxis)
+            .append("text")
+            .style("font-family", "sans-serif")
+            .style("font-size", "11px")
+            .style("font-weight", "bold")
+            .style("fill", "black")
+            .style("transform", `translate(${-margin.left / 2 + 8}px, ${chartH / 2 -80}px) rotate(-90deg)`)
+            .text("Number of Criteria Mentioned")
+
             d3.select(marks2).selectAll("circle")
             .data(fullData).join("circle")
             .style("fill", "grey")
@@ -137,6 +170,7 @@
             // );
             
     }
+    
     //$: console.log(fullData[0]['mentioned']);
 </script>
 

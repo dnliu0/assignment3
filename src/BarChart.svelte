@@ -117,29 +117,50 @@
                 .call(d3.axisBottom(xScale)).selectAll("text")
                 .attr("transform", "rotate(-45)")
                 .style("text-anchor", "end");
+
             d3.select(yAxis)
                 .call(d3.axisLeft(yScale));
+            //     d3.select(xAxis)
+            //     .append("text")
+            //     .style("font-family", "sans-serif")
+            //     .style("font-size", "11px")
+            //     .style("font-weight", "bold")
+            //     .style("fill", "black")
+            //     .style("transform", `translate(${chartW / 2}px, ${120}px)`)
+            //     .text("Criteria");
+            
+        d3.select(yAxis)
+            .append("text")
+            .style("font-family", "sans-serif")
+            .style("font-size", "11px")
+            .style("font-weight", "bold")
+            .style("fill", "black")
+            .style("transform", `translate(${-margin.left / 2 }px, ${chartH / 2-50}px) rotate(-90deg)`)
+            .text("Frequency of Mentions")
+        
         }
     //$: console.log(fullData[0]['mentioned']);
   
 </script>
 
 <main>
+    
     <svg {width} {height}>
+        
         <g transform="translate({margin.left}, {margin.top})">
             {#each barData as d, i}
                 <rect class = "backgroundbar"
-                    x={7 + xScale(d.criterion)} 
+                    x={5 + xScale(d.criterion)} 
                     y={yScale(d.count)}
-                    width={24}
+                    width={20}
                     height={chartH - yScale(d.count)}/>
             {/each}
             <!-- {console.log(partialBarData)} -->
             {#each partialBarData as d, i}
                 <rect class = "bar"
-                    x={7 + xScale(d.criterion)} 
+                    x={5 + xScale(d.criterion)} 
                     y={yScale(d.count)}
-                    width={24}
+                    width={20}
                     height={chartH - yScale(d.count)}/>
             {/each}
             <!-- {#each fullData as d, i}

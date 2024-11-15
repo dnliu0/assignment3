@@ -8,8 +8,8 @@
     export let update;
     export let criteria;
 
-    let margin = {top: 10, right: 80, bottom: 30, left: 60};
-    let width = 500;
+    let margin = {top: 10, right: 80, bottom: 90, left: 60};
+    let width = 600;
     let height = 200;
     let chartW = width - margin.left - margin.right;
     let chartH = height - margin.top - margin.bottom;
@@ -90,7 +90,10 @@
                 .call(d3.axisBottom(xScale));
             d3.select(yAxis)
                 .call(d3.axisLeft(yScale));
-        }
+    }
+    $:{
+       
+    }
     //$: console.log(fullData[0]['mentioned']);
 </script>
 
