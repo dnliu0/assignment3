@@ -10,7 +10,7 @@
     export let brushLayer;
     export let brush;
 
-    let margin = {top: 10, right: 80, bottom: 145, left: 60};
+    let margin = {top: 10, right: 80, bottom: 170, left: 60};
     let width = 800;
     let height = 400;
     let chartW = width - margin.left - margin.right;
@@ -117,50 +117,29 @@
                 .call(d3.axisBottom(xScale)).selectAll("text")
                 .attr("transform", "rotate(-45)")
                 .style("text-anchor", "end");
-
             d3.select(yAxis)
                 .call(d3.axisLeft(yScale));
-            //     d3.select(xAxis)
-            //     .append("text")
-            //     .style("font-family", "sans-serif")
-            //     .style("font-size", "11px")
-            //     .style("font-weight", "bold")
-            //     .style("fill", "black")
-            //     .style("transform", `translate(${chartW / 2}px, ${120}px)`)
-            //     .text("Criteria");
-            
-        d3.select(yAxis)
-            .append("text")
-            .style("font-family", "sans-serif")
-            .style("font-size", "11px")
-            .style("font-weight", "bold")
-            .style("fill", "black")
-            .style("transform", `translate(${-margin.left / 2 }px, ${chartH / 2-50}px) rotate(-90deg)`)
-            .text("Frequency of Mentions")
-        
         }
     //$: console.log(fullData[0]['mentioned']);
   
 </script>
 
 <main>
-    
     <svg {width} {height}>
-        
         <g transform="translate({margin.left}, {margin.top})">
             {#each barData as d, i}
                 <rect class = "backgroundbar"
-                    x={5 + xScale(d.criterion)} 
+                    x={7 + xScale(d.criterion)} 
                     y={yScale(d.count)}
-                    width={20}
+                    width={24}
                     height={chartH - yScale(d.count)}/>
             {/each}
             <!-- {console.log(partialBarData)} -->
             {#each partialBarData as d, i}
                 <rect class = "bar"
-                    x={5 + xScale(d.criterion)} 
+                    x={7 + xScale(d.criterion)} 
                     y={yScale(d.count)}
-                    width={20}
+                    width={24}
                     height={chartH - yScale(d.count)}/>
             {/each}
             <!-- {#each fullData as d, i}

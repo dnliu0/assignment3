@@ -19,28 +19,28 @@
     let yAxis;
 
     let tempCriteria = ['Topic alignment',
- 'Comprehensive Coverage',
- 'Required Attribute',
- 'Data Ranges',
- 'Patterns',
- 'Granularity',
- 'Collection Timeframe',
- 'Update Frequency',
- 'Composition of Data Fields',
- 'Sample Data',
- 'Methods Used',
- 'Good Practices Adherence',
- 'Unusable Data',
- 'Completeness',
- 'Access to the Full Dataset',
- 'Suitable Format',
- 'High Quality Supplements',
- 'Data Provider Communication',
- 'Reputable Source',
- 'Recommendations',
- 'Popular Dataset',
- 'Methods Comply with Legal Requirements',
- 'Access Terms'];
+                        'Comprehensive Coverage',
+                        'Required Attribute',
+                        'Data Ranges',
+                        'Patterns',
+                        'Granularity',
+                        'Collection Timeframe',
+                        'Update Frequency',
+                        'Composition of Data Fields',
+                        'Sample Data',
+                        'Methods Used',
+                        'Good Practices Adherence',
+                        'Unusable Data',
+                        'Completeness',
+                        'Access to the Full Dataset',
+                        'Suitable Format',
+                        'High Quality Supplements',
+                        'Data Provider Communication',
+                        'Reputable Source',
+                        'Recommendations',
+                        'Popular Dataset',
+                        'Methods Comply with Legal Requirements',
+                        'Access Terms'];
 
     const brush = d3.brushX()
         .extent([[0, 0], [chartW, chartH]])
@@ -83,7 +83,19 @@
     // $: yScale = d3.scaleLinear()
     //     .range([chartH, 0])
     //     .domain([0, d3.max(backgroundBins, (d) => d.length)]);
-    $: yScale = d3.scaleLinear().range([chartH, 0]).domain([0, d3.max(fullData, (d) => d.count)])
+    $: yScale = setYScale();
+
+    function setYScale() {
+        let y = {}
+        for (let i in dimensions) {
+            let c = dimensions[i]
+            y[c] = d3.scaleLinear()
+            .domain( d3.extent(fullData, function(d) { return +d[c]; }) )
+            .range([height, 0])
+        }
+    }
+  
+
     $: {	
             // d3.select(brushLayer)
             //     .call(brush);

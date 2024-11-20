@@ -12,9 +12,9 @@
     let brushLayer;
     let brush;
 
-    let margin = {top: 50, right: 80, bottom: 75, left: 60};
+    let margin = {top: 10, right: 80, bottom: 30, left: 60};
     let width = 500;
-    let height = 340;
+    let height = 200;
     let chartW = width - margin.left - margin.right;
     let chartH = height - margin.top - margin.bottom;
 
@@ -46,7 +46,7 @@
  'Methods Comply with Legal Requirements',
  'Access Terms'];
 
-    brush = d3.brushX()
+    brush = d3.brush()
         .extent([[0, 0], [chartW, chartH]])
         .on("brush", brushed)
         .on("end", brushended);        
@@ -59,9 +59,9 @@
         //     extent = extent.map(function(e) { return d[d3.bisect(r, e) - 1]; });
         // }
         if (event && event.selection) {
-            
-            filter = [xScale.invert(event.selection[0]), xScale.invert(event.selection[1])];
-            //console.log(filter);
+            filter = [[xScale.invert(event.selection[0][0]), yScale.invert(event.selection[0][1])], 
+            [xScale.invert(event.selection[1][0]), yScale.invert(event.selection[1][1])]];
+            console.log(filter);
             update();
         }
     }
@@ -88,47 +88,14 @@
     //     .domain([0, d3.max(backgroundBins, (d) => d.length)]);
     $: yScale = d3.scaleLinear().range([chartH, 0]).domain([0, d3.max(fullData, (d) => d.count)])
     $: {	
-            // d3.select(brushLayer)
-            //     .call(brush);
+            d3.select(brushLayer)
+                .call(brush);
             d3.select(xAxis)
                 .call(d3.axisBottom(xScale));
             d3.select(yAxis)
                 .call(d3.axisLeft(yScale));
         }
         $: {
-            d3.select(xAxis).selectAll("text").remove()
-            d3.select(xAxis)
-            .append("text")
-            .style("font-family", "sans-serif")
-            .style("font-size", "11px")
-            .style("font-weight", "bold")
-            .style("fill", "black")
-            .style("transform", `translate(${chartW / 2}px, ${40}px)`)
-            .text("Task Type")
-            d3.select(xAxis)
-            .append("text").style("font-family", "sans-serif")
-            .style("font-size", "11px")
-            .style("font-weight", "bold")
-            .style("fill", "black")
-            .style("transform", `translate(${10}px, ${20}px)`)
-            .text("Exploratory")
-            d3.select(xAxis)
-            .append("text").style("font-family", "sans-serif")
-            .style("font-size", "11px")
-            .style("font-weight", "bold")
-            .style("fill", "black")
-            .style("transform", `translate(${chartW}px, ${20}px)`)
-            .text("Confirmatory")
-
-            d3.select(yAxis)
-            .append("text")
-            .style("font-family", "sans-serif")
-            .style("font-size", "11px")
-            .style("font-weight", "bold")
-            .style("fill", "black")
-            .style("transform", `translate(${-margin.left / 2 + 8}px, ${chartH / 2 -80}px) rotate(-90deg)`)
-            .text("Number of Criteria Mentioned")
-
             d3.select(marks2).selectAll("circle")
             .data(fullData).join("circle")
             .style("fill", "grey")
@@ -170,7 +137,6 @@
             // );
             
     }
-    
     //$: console.log(fullData[0]['mentioned']);
 </script>
 
