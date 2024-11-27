@@ -228,12 +228,37 @@
 
 <main>
   <!-- <h1>NYC Restaurants</h1> -->
-  <div class="flex-container row">
+  <h1>Identify Your Key Criteria: Evaluating Dataset Usefulness for Your Task</h1>
+  <div class="paragraphs">
+  <p>
+    Data workers search for and leverage datasets for a wide range of tasks. However, previous studies have shown that effectively navigating to datasets that meet their specific information needs remains a challenge. 
+  </p>
+  <p>
+To explore this, we conducted a survey study with 41 participants who work with data on a regular basis to understand how people currently search for datasets on open data sharing platforms, the types of information they rely on, and the factors that influence their decision on whether to use a dataset.
+</p>
+<p>
+We collected a total of 68 tasks from these participants, which we grouped along a ranging from exploratory to confirmatory tasks. The exploratory tasks included broadly open-ended activities such as “Build visualizations for storytelling about elections,” while the confirmatory tasks included more definitive objectives, such as “Check the air quality in Pittsburgh.” Positioned between them were tasks categorized as "rough confirmatory," such as “Analyze customer preferences for new product features.”
+</p>
+<p>While analyzing the responses, we noticed that participants established some <b>criteria</b> when explaining their rationale for selecting datasets. Consequently, we categorized the responses based on the criteria mentioned, which we believe could serve as a proxy for their underlying needs.</p>
+<p>
+On the <b>scatter plot</b>, although we can not see a sharply defined boundary separating these categories, we did notice a trend: participants engaging in tasks classified as rough confirmatory (in the middle part of the scatter plot) tended to mention a greater number of criteria compared to other task types.  
+</p>
+<p>We hypothesize that this is because, for well-defined tasks, participants have a clearer and more specific understanding of what they are seeking, which reduces their reliance on a broader set of criteria as a proxy for decision-making. Conversely, for open-ended exploratory tasks, participants are still broadly exploring possibilities and may pay less attention to criteria that determine whether a dataset is of usable quality.</p>
+<p>The <b>bar chart</b> shows the frequency with which each criterion was mentioned, indicating the most important criteria that people commonly rely on when making their judgments. The popularity of these criteria may be influenced by the limited availability of information on sharing platforms or reflect their genuine importance to people who are searching for datasets. </p>
+</div>  
+<div class="flex-container row">
+    
+
     <!-- <div class="map"><Heatmap data={data} fullData={fullData}/></div> -->
     <div><Scatterplot data={data} fullData={fullData} criteria={criteria} update={updateData} bind:filter={filter2} bind:marks={marks} bind:marks2={marks2} /></div>
     <!-- <div><Histogram2 data={data} fullData={fullData} criteria={criteria}/></div> -->
     <div><BarChart data={data} fullData={fullData} criteria={criteria} update={updateData} bind:filter={filter1} bind:brushLayer={brushLayer} bind:brush={brush}/></div>
     <!-- <div><Parallel data={data} fullData={fullData} criteria={criteria} update={updateData} bind:filter={filter1}/></div> -->
+  </div>
+  <div class="paragraphs">
+    <p>When brushing over the criteria in the <b>bar chart</b>, it highlights the criteria that are commonly mentioned together, which suggests the patterns of criteria that tend to be grouped. Simultaneously, the data points on the <b>scatter plot</b>, which represent individual tasks, are also highlighted. These highlighted points correspond to tasks where participants reported relying on the selected criteria while searching for datasets
+    </p>
+    <p><b>Now, let's add your point to the dataset. You have been randomly assigned a task. Based on this task, which criteria do you believe would help you determine the usefulness of a dataset?</b></p>
   </div>
   <div class="flex-container row">
     <p>{question}</p>
@@ -293,6 +318,10 @@
 
   .hist-text {
     margin-bottom: 10px;
+  }
+
+  p {
+    text-align: left;
   }
 
   
